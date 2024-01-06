@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:music/app/app.dart';
+import 'package:music/app/database/object_box.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -26,6 +28,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
+  objectbox = await ObjectBox.create();
 
   // Add cross-flavor configuration here
 

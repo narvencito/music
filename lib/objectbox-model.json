@@ -1,0 +1,76 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:598335344674949174",
+      "lastPropertyId": "4:3753845151845557475",
+      "name": "AudioEntity",
+      "properties": [
+        {
+          "id": "1:2764103454951905419",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7288004451345443356",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:4423364527349032848",
+          "name": "autor",
+          "type": 9
+        },
+        {
+          "id": "4:3753845151845557475",
+          "name": "favorite",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:7824376707995856932",
+      "lastPropertyId": "4:3798569305028061224",
+      "name": "VideoEntity",
+      "properties": [
+        {
+          "id": "1:619109641363573441",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3210483710514237799",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7342887556046093820",
+          "name": "autor",
+          "type": 9
+        },
+        {
+          "id": "4:3798569305028061224",
+          "name": "favorite",
+          "type": 1
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:7824376707995856932",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

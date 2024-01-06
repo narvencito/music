@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:music/counter/counter.dart';
+import 'package:get_it/get_it.dart';
+import 'package:music/app/config/routes_app.dart';
+import 'package:music/app/database/object_box.dart';
 import 'package:music/l10n/l10n.dart';
-import 'package:music/music/music.dart';
+
+final GetIt getItApp = GetIt.instance;
+late ObjectBox objectbox;
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -18,7 +22,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const ListMusicPage(),
+      onGenerateRoute: RoutesApp.routes,
     );
   }
 }
