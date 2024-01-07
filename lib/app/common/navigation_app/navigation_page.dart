@@ -5,7 +5,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:music/app/common/model/menu_model.dart';
 import 'package:music/app/common/navigation_app/app_tab_bar.dart';
 import 'package:music/app/config/routes_app.dart';
-import 'package:music/app/modules/music/audio.dart';
+import 'package:music/app/modules/radio/view/radio_page.dart';
+import 'package:music/app/modules/song/song_page.dart';
+import 'package:music/app/modules/video/view/video_list_page.dart';
 import 'package:music/utils/constans.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -35,7 +37,9 @@ class NavigationPageState extends State<NavigationPage> {
   @override
   void initState() {
     super.initState();
-    screens.add(const AudioListPage());
+    screens.add(const SongPage());
+    screens.add(const VideoListPage());
+    screens.add(const RadioPage());
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.selectedIndex != null) {

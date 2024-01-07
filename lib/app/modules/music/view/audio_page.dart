@@ -1,13 +1,14 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, lines_longer_than_80_chars
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:music/utils/constans.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class AudioPage extends StatefulWidget {
-  AudioPage({required this.filePath, super.key});
+  AudioPage({required this.model, super.key});
 
-  String filePath;
+  SongModel model;
 
   @override
   State<AudioPage> createState() => _AudioPageState();
@@ -24,9 +25,14 @@ class _AudioPageState extends State<AudioPage> {
     super.initState();
     audioPlayer = AudioPlayer();
     audioPlayer.onPositionChanged.listen(
-      (Duration duration) => setState(() {
-        currentPosition = duration.inSeconds.toDouble();
-      }),
+      (Duration duration) {
+        setState(() {
+          currentPosition = duration.inSeconds.toDouble();
+          if (currentPosition == totalDuration) {
+            isPlaying = false;
+          }
+        });
+      },
     );
 
     audioPlayer.onDurationChanged.listen((Duration duration) {
@@ -34,6 +40,7 @@ class _AudioPageState extends State<AudioPage> {
         totalDuration = duration.inSeconds.toDouble();
       });
     });
+    _playPause(widget.model.data);
   }
 
   Future<void> _playPause(String filePath) async {
@@ -52,7 +59,6 @@ class _AudioPageState extends State<AudioPage> {
     final minutes = seconds ~/ 60;
     final remainingSeconds = seconds % 60;
 
-    // ignore: lines_longer_than_80_chars
     final formattedDuration = '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
 
     return formattedDuration;
@@ -67,7 +73,6 @@ class _AudioPageState extends State<AudioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 44, 72, 95),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 44, 72, 95),
         leading: InkWell(
@@ -80,7 +85,7 @@ class _AudioPageState extends State<AudioPage> {
           ),
         ),
         title: const Text(
-          'Reproductor Musical',
+          'Reproductor',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -103,24 +108,26 @@ class _AudioPageState extends State<AudioPage> {
             Column(
               children: [
                 Text(
-                  widget.filePath.split('/').last,
+                  widget.model.displayName,
                   style: const TextStyle(color: Colors.white),
                 ),
-                const Text(
-                  'Artista',
-                  style: TextStyle(color: Colors.white),
+                Text(
+                  'Artista :${(widget.model.artist == null || widget.model.artist!.contains('unknown')) ? 'No Artist' : widget.model.artist!}',
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
             const Center(
               child: Icon(
-                Icons.favorite,
+                Icons.favorite_border,
                 color: Colors.red,
               ),
             ),
             Column(
               children: [
                 Slider(
+                  activeColor: Colors.cyan[800],
+                  inactiveColor: Colors.grey,
                   max: totalDuration,
                   value: currentPosition,
                   onChanged: (double value) {
@@ -152,14 +159,26 @@ class _AudioPageState extends State<AudioPage> {
                     ],
                   ),
                 ),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
+                InkWell(
+                  onTap: () async {
+                    await _playPause(widget.model.data);
+                  },
+                  borderRadius: BorderRadius.circular(100),
+                  child: CircleAvatar(
+                    backgroundColor: const Color.fromARGB(193, 235, 77, 77),
+                    child: Icon(
+                      isPlaying ? Icons.pause_sharp : Icons.play_arrow,
+                      color: ConstantsApp.primaryColor,
+                    ),
+                  ),
+                ),
               ],
             ),
-            ElevatedButton(
-              onPressed: () async {
-                await _playPause(widget.filePath);
-              },
-              child: Text(isPlaying ? 'Pausar' : 'Reproducir'),
-            ),
+            const SizedBox(height: 30),
           ],
         ),
       ),

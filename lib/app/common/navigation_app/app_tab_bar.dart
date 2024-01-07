@@ -126,7 +126,7 @@ class ItemTapBar extends StatefulWidget {
     bool isSelected = false,
     required IconData iconData,
     required String label,
-    Color selectedColor = ConstantsApp.purpleSecondaryColor,
+    Color selectedColor = ConstantsApp.primaryColor,
   }) {
     this.isSelected = isSelected;
     this.iconData = iconData;
@@ -136,7 +136,7 @@ class ItemTapBar extends StatefulWidget {
   bool isSelected = false;
   late IconData iconData;
   String label = '';
-  Color selectedColor = ConstantsApp.purpleSecondaryColor;
+  Color selectedColor = ConstantsApp.primaryColor;
 
   @override
   State<ItemTapBar> createState() => _ItemTapBarState();

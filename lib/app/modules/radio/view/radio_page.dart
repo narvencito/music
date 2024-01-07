@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class VideoPage extends StatelessWidget {
-  const VideoPage({super.key});
+class RadioPage extends StatelessWidget {
+  const RadioPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Video page'),
+        child: Text('Radio page'),
       ),
     );
   }

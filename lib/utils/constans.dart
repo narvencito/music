@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ConstantsApp {
   //colors
-  static const primaryColor = Color.fromARGB(255, 34, 125, 209);
+  // static const primaryColor = Color.fromARGB(255, 34, 125, 209);
+  static const primaryColor = Color.fromARGB(255, 44, 72, 95);
   static const buttonColorPrimary = Color.fromRGBO(20, 135, 173, 0.4);
   static const buttonColorSecondary = Color.fromRGBO(141, 26, 26, 0.4);
   static const buttonColorTertiary = Color.fromRGBO(67, 201, 85, 0.4);

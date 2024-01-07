@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:music/app/app.dart';
 import 'package:music/app/config/routes_app.dart';
 // import 'package:music/app/modules/music/audio.dart';
 import 'package:permission_handler/permission_handler.dart';

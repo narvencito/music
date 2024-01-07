@@ -10,8 +10,9 @@ class ThemeApp {
     appBarTheme: const AppBarTheme(
       elevation: 0,
       foregroundColor: Colors.black,
+      // backgroundColor: ConstantsApp.primaryColor,
       centerTitle: true,
-      color: Colors.transparent,
+      // color: ConstantsApp.primaryColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
@@ -23,16 +24,16 @@ class ThemeApp {
     ),
     useMaterial3: false,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    primaryColor: ConstantsApp.primaryColor,
+    primaryColor: Colors.white,
     fontFamily: 'OpenSans',
     brightness: Brightness.light,
     textTheme: const TextTheme(),
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: MaterialColorGenerator.from(ConstantsApp.primaryColor),
-    ).copyWith(secondary: const Color.fromARGB(255, 34, 125, 209)).copyWith(
-          background: const Color.fromARGB(255, 34, 125, 209),
+    ).copyWith(secondary: ConstantsApp.primaryColor).copyWith(
+          background: ConstantsApp.primaryColor,
         ),
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: ConstantsApp.primaryColor,
     tabBarTheme: const TabBarTheme(
       labelColor: Colors.black,
       labelStyle: ConstantsApp.labelStyle,

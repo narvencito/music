@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:music/app/common/navigation_app/navigation_page.dart';
 import 'package:music/app/modules/music/audio.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class RoutesApp {
   // static const splash = '/';
@@ -21,7 +22,7 @@ class RoutesApp {
         return MaterialPageRoute(builder: (_) => NavigationPage());
       case audio:
         return PageRouteBuilder(
-          pageBuilder: (_, animation, secondaryAnimation) => AudioPage(filePath: args! as String),
+          pageBuilder: (_, animation, secondaryAnimation) => AudioPage(model: args! as SongModel),
           transitionDuration: const Duration(milliseconds: 1000),
           transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
         );
