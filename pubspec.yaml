@@ -18,7 +18,7 @@ dependencies:
   flutter_file_dialog: ^3.0.2
   flutter_localizations:
     sdk: flutter
-  get_it: ^7.6.4
+  get_it: ^7.6.6
   intl: ^0.18.0
   objectbox: ^2.4.0
   objectbox_flutter_libs: ^2.4.0
