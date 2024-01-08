@@ -6,9 +6,9 @@ import 'package:music/utils/constans.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class AudioPage extends StatefulWidget {
-  AudioPage({required this.model, super.key});
-
-  SongModel model;
+  AudioPage({required this.list, required this.index, super.key});
+  List<SongModel> list;
+  int index;
 
   @override
   State<AudioPage> createState() => _AudioPageState();
@@ -40,7 +40,7 @@ class _AudioPageState extends State<AudioPage> {
         totalDuration = duration.inSeconds.toDouble();
       });
     });
-    _playPause(widget.model.data);
+    _playPause(widget.list[widget.index].data);
   }
 
   Future<void> _playPause(String filePath) async {
@@ -108,11 +108,12 @@ class _AudioPageState extends State<AudioPage> {
             Column(
               children: [
                 Text(
-                  widget.model.displayName,
+                  widget.list[widget.index].displayName,
                   style: const TextStyle(color: Colors.white),
                 ),
+                const Divider(color: Colors.transparent),
                 Text(
-                  'Artista :${(widget.model.artist == null || widget.model.artist!.contains('unknown')) ? 'No Artist' : widget.model.artist!}',
+                  'Artista :${(widget.list[widget.index].artist == null || widget.list[widget.index].artist!.contains('unknown')) ? 'No Artist' : widget.list[widget.index].artist!}',
                   style: const TextStyle(color: Colors.white),
                 ),
               ],
@@ -150,6 +151,7 @@ class _AudioPageState extends State<AudioPage> {
                           color: Colors.white,
                         ),
                       ),
+                      const Divider(color: Colors.transparent),
                       Text(
                         formatDuration(totalDuration.toInt()),
                         style: const TextStyle(
@@ -163,17 +165,47 @@ class _AudioPageState extends State<AudioPage> {
                   height: 20,
                   color: Colors.transparent,
                 ),
-                InkWell(
-                  onTap: () async {
-                    await _playPause(widget.model.data);
-                  },
-                  borderRadius: BorderRadius.circular(100),
-                  child: CircleAvatar(
-                    backgroundColor: const Color.fromARGB(193, 235, 77, 77),
-                    child: Icon(
-                      isPlaying ? Icons.pause_sharp : Icons.play_arrow,
-                      color: ConstantsApp.primaryColor,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setIndex(-1);
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await _playPause(widget.list[widget.index].data);
+                        },
+                        borderRadius: BorderRadius.circular(100),
+                        child: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(193, 235, 77, 77),
+                          child: Icon(
+                            isPlaying ? Icons.pause_sharp : Icons.play_arrow,
+                            color: ConstantsApp.primaryColor,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          setIndex(1);
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        child: const Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -183,5 +215,12 @@ class _AudioPageState extends State<AudioPage> {
         ),
       ),
     );
+  }
+
+  void setIndex(int value) {
+    widget.index = ((widget.index + value) < 0 || (widget.index + value) > widget.list.length - 1) ? 0 : widget.index + value;
+    isPlaying = false;
+    _playPause(widget.list[widget.index].data);
+    setState(() {});
   }
 }

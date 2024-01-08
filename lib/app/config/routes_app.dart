@@ -15,14 +15,16 @@ class RoutesApp {
   static const radioList = '/radio-list';
 
   static Route routes(RouteSettings settings) {
-    final args = settings.arguments;
+    var args = settings.arguments;
 
     switch (settings.name) {
       case home:
         return MaterialPageRoute(builder: (_) => NavigationPage());
       case audio:
+        final args1 = args! as Map;
         return PageRouteBuilder(
-          pageBuilder: (_, animation, secondaryAnimation) => AudioPage(model: args! as SongModel),
+          pageBuilder: (_, animation, secondaryAnimation) =>
+              AudioPage(list: args1['list'] as List<SongModel>, index: args1['index'] as int),
           transitionDuration: const Duration(milliseconds: 1000),
           transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
         );

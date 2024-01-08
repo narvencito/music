@@ -87,7 +87,7 @@ class _SongPageState extends State<SongPage> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, RoutesApp.audio, arguments: item.data![index]);
+                          Navigator.pushNamed(context, RoutesApp.audio, arguments: {'list': item.data, 'index': index});
                         },
                       );
                     },
